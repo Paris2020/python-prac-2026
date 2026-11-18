@@ -12,7 +12,7 @@
 
 </div>
 
-![Python Practice 2026 — Applied Artificial Intelligence](assets/python-practice-2026-banner.png)
+![Python Practice 2026 — Applied Artificial Intelligence](screenshots/python-practice-2026-banner.png)
 
 ## About the Repository
 
