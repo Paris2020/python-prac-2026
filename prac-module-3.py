@@ -217,3 +217,66 @@ for i in inc_two:
         break;
     else:
         print(i, end=", ")
+
+
+print()
+print("========= END: PLACEHOLDERS ===========")
+print()
+
+
+#Exception handling
+value_a = 10
+the_list = [1,2,3,4]
+
+try:
+    print(value_b)
+except NameError as msg:
+    print("A name error has occurred: ", msg)
+
+
+try:
+    for i in range(0,5):
+        print(the_list[i], end=",")
+except IndexError as msg:
+    print()
+    print("An index error has occurred: ", msg)
+
+
+try:
+    a = int(input("Enter a number: "))
+except ValueError as msg:
+    print("A value error has occurred: ", msg)
+
+
+entries = [2,3,4,5,6]
+try:
+    a = int(input("Enter a number: "))
+    index = 0
+    while index < a:
+        print(entries[index])
+        index+=1
+except (ValueError, IndexError) as msg:
+    print("A value error has occurred: ", msg)
+finally:
+    print("This statement will always execute")
+
+
+try:
+    a = 50
+    if a > 10:
+        raise ValueError("The value is too high!")
+except ValueError as msg:
+    print("A value error has occurred: ", msg)
+
+
+entries = [2,3,4,5,6]
+try:
+    a = int(input("Enter a number: "))
+    index = 0
+    while index < a:
+        print(entries[index])
+        index+=1
+except Exception as msg:
+    print("An error has occurred: ", msg)
+finally:
+    print("This statement will always execute")
