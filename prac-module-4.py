@@ -1,4 +1,5 @@
 import os
+import shutil
 from pathlib import Path
 
 #Listing files and directories
@@ -74,3 +75,13 @@ print()
 entries = Path("/Users/nellymoseki/git/tutorials")
 for entry in entries.iterdir():
     print(entry)
+
+
+
+#Directory operations
+root_path = "/Users/nellymoseki/git/tutorials"
+#os.mkdir(root_path + "/new-folder")
+#os.makedirs(root_path + "/new-folder/sub-dir")
+#os.rmdir(root_path + "/new-folder/sub-dir")
+#shutil.rmtree(root_path + "/new-folder")
+print(root_path)
