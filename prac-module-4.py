@@ -1,6 +1,7 @@
 import os
 import shutil
 from pathlib import Path
+from datetime import datetime
 
 #Listing files and directories
 root_path = os.path.join("/","users","username")
@@ -85,3 +86,22 @@ root_path = "/Users/nellymoseki/git/tutorials"
 #os.rmdir(root_path + "/new-folder/sub-dir")
 #shutil.rmtree(root_path + "/new-folder")
 print(root_path)
+
+print()
+
+#File operations
+#hutil.move("/Users/nellymoseki/git/tutorials/new-folder-b/mean-girl-energy.jpeg", "/Users/nellymoseki/git/tutorials/new-folder-a/mean-girl-energy.jpeg")
+#shutil.copy("/Users/nellymoseki/git/tutorials/new-folder-b/mean-girl-energy.jpeg", "/Users/nellymoseki/git/tutorials/new-folder-a/mean-girl-energy.jpeg")
+#os.rename("/Users/nellymoseki/git/tutorials/new-folder-b/mean-girl-energy.jpeg", "/Users/nellymoseki/git/tutorials/new-folder-a/mean-girl-energy.jpeg")
+
+print()
+
+results = os.stat("/Users/nellymoseki/git/tutorials/new-folder-b/mean-girl-energy.jpeg")
+print(results)
+print()
+print("Size: {} bytes".format(results.st_size))
+print("Created: {}".format(datetime.fromtimestamp(results.st_mtime)))
+print("Accessed: {}".format(datetime.fromtimestamp(results.st_atime)))
+print("Modified: {}".format(datetime.fromtimestamp(results.st_mtime)))
+
+
