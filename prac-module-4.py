@@ -1,6 +1,8 @@
 import os
 import shutil
 import zipfile
+import schedule
+import time
 from pathlib import Path
 from datetime import datetime
 
@@ -132,3 +134,41 @@ root_path = "/Users/nellymoseki/git/tutorials/"
 
 with zipfile.ZipFile(root_path + "/new-folder-b.zip", 'a') as zip_archive:
     zip_archive.write(root_path + "/poster-1-willow-view.png")
+
+
+print()
+print("============= END: Scheduling ================")
+print()
+
+
+def display_time():
+    now = datetime.now()
+    current_time = now.strftime("%H:%M:%S")
+    print("Current time: {}".format(current_time))
+
+
+def display_random_time():
+    print("Randomly called - ", end="")
+    display_time()
+
+
+def daily():
+    print("It's a new day")
+
+def tuesday_time():
+    print("It's 10:19 on Tuesday")
+
+
+schedule.every(30).seconds.do(display_time)
+schedule.every().day.at("08:00").do(daily)
+schedule.every().tuesday.at("12:00").do(display_random_time)
+
+continue_loop = True
+
+try:
+    while continue_loop:
+        schedule.run_pending()
+        time.sleep(1)
+except:
+    continue_loop = False
+    print("Schedule ended")
