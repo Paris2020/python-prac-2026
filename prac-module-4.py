@@ -1,4 +1,5 @@
 import os
+import io
 import shutil
 import zipfile
 import schedule
@@ -185,7 +186,7 @@ print(response.text)
 response = requests.get("https://randomuser.me/api/")
 print(response.text)
 
-api_key = "YOUR_API_KEY"
+api_key = "live_ZeNa3pP20i1NDvbk32deJTWCTnVLsKAHdy7RGg0YtShny8bq4NQcOdYXoGbFjDlv"
 url = "https://api.thedogapi.com/v1/breeds/search"
 headers = {"X-Api-Key": api_key}
 params = {"q": "pomeranian"}
@@ -204,3 +205,27 @@ print(response.request.headers)
 print()
 print("============= END: Making requests ================")
 print()
+
+
+#HTTP basics
+response = requests.get("https://api.thedogapi.com/v1/breeds/search?q=pomeranian")
+print("Content type: ", response.headers.get('Content-Type'))
+print("Server: ", response.headers.get('Server'))
+
+response = requests.get("https://picsum.photos/200/300")
+print("Content type: ", response.headers.get('Content-Type'))
+print("Server: ", response.headers.get('Server'))
+
+response = requests.get("https://api.thedogapi.com/v1/breeds/search?q=pomeranian")
+print("JSON content type: ", type(response.json()))
+print("JSON content: ", response.json())
+print("JSON content - specific value - name: ", response.json()[0]['name'])
+print("JSON content - specific value - bred-for: ", response.json()[0]['bred_for'])
+
+response = requests.get("https://picsum.photos/640/480")
+print("Image content type: ", type(response.content))
+print("Image content: ", response.content)
+my_file = open("placeholder.jpg", "wb")
+my_file.write(response.content)
+my_file.close()
+os.system("open placeholder.jpg")
