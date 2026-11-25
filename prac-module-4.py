@@ -2,6 +2,7 @@ import os
 import shutil
 import zipfile
 import schedule
+import requests
 import time
 from pathlib import Path
 from datetime import datetime
@@ -132,25 +133,24 @@ root_path = "/Users/nellymoseki/git/tutorials/"
 #with zipfile.ZipFile(root_path + "/new-folder-b.zip", 'w') as zip_archive:
     #zip_archive.write(root_path + "/afrihost-walk-in.png")
 
-with zipfile.ZipFile(root_path + "/new-folder-b.zip", 'a') as zip_archive:
-    zip_archive.write(root_path + "/poster-1-willow-view.png")
+#with zipfile.ZipFile(root_path + "/new-folder-b.zip", 'a') as zip_archive:
+    #zip_archive.write(root_path + "/poster-1-willow-view.png")
 
 
 print()
-print("============= END: Scheduling ================")
+print("============= END: Compressed files ================")
 print()
 
 
+#Scheduling tasks
 def display_time():
     now = datetime.now()
     current_time = now.strftime("%H:%M:%S")
     print("Current time: {}".format(current_time))
 
-
 def display_random_time():
     print("Randomly called - ", end="")
     display_time()
-
 
 def daily():
     print("It's a new day")
@@ -158,12 +158,11 @@ def daily():
 def tuesday_time():
     print("It's 10:19 on Tuesday")
 
-
 schedule.every(30).seconds.do(display_time)
 schedule.every().day.at("08:00").do(daily)
 schedule.every().tuesday.at("12:00").do(display_random_time)
 
-continue_loop = True
+continue_loop = False
 
 try:
     while continue_loop:
@@ -172,3 +171,36 @@ try:
 except:
     continue_loop = False
     print("Schedule ended")
+
+
+print()
+print("============= END: Scheduling tasks ================")
+print()
+
+
+#Making requests
+response = requests.get("https://catfact.ninja/fact")
+print(response.text)
+
+response = requests.get("https://randomuser.me/api/")
+print(response.text)
+
+api_key = "YOUR_API_KEY"
+url = "https://api.thedogapi.com/v1/breeds/search"
+headers = {"X-Api-Key": api_key}
+params = {"q": "pomeranian"}
+response = requests.get(url, headers=headers, params=params, timeout=10)
+
+print(response.text)
+print(response.headers)
+print(response.status_code)
+print(response.reason)
+print(response.request)
+print(response.request.url)
+print(response.request.path_url)
+print(response.request.method)
+print(response.request.headers)
+
+print()
+print("============= END: Making requests ================")
+print()
