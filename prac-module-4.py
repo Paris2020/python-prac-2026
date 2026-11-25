@@ -5,6 +5,7 @@ import zipfile
 import schedule
 import requests
 import time
+from dotenv import load_dotenv
 from pathlib import Path
 from datetime import datetime
 
@@ -186,12 +187,16 @@ print(response.text)
 response = requests.get("https://randomuser.me/api/")
 print(response.text)
 
-api_key = "live_ZeNa3pP20i1NDvbk32deJTWCTnVLsKAHdy7RGg0YtShny8bq4NQcOdYXoGbFjDlv"
+
+load_dotenv()
+api_key = os.getenv("API_KEY")
 url = "https://api.thedogapi.com/v1/breeds/search"
-headers = {"X-Api-Key": api_key}
+headers = {"Authorization": f"Bearer {api_key}"}
 params = {"q": "pomeranian"}
 response = requests.get(url, headers=headers, params=params, timeout=10)
 
+
+print(api_key is not None)
 print(response.text)
 print(response.headers)
 print(response.status_code)
@@ -219,13 +224,13 @@ print("Server: ", response.headers.get('Server'))
 response = requests.get("https://api.thedogapi.com/v1/breeds/search?q=pomeranian")
 print("JSON content type: ", type(response.json()))
 print("JSON content: ", response.json())
-print("JSON content - specific value - name: ", response.json()[0]['name'])
-print("JSON content - specific value - bred-for: ", response.json()[0]['bred_for'])
+#print("JSON content - specific value - name: ", response.json()[0]['name'])
+#print("JSON content - specific value - bred-for: ", response.json()[0]['bred_for'])
 
 response = requests.get("https://picsum.photos/640/480")
-print("Image content type: ", type(response.content))
-print("Image content: ", response.content)
-my_file = open("placeholder.jpg", "wb")
-my_file.write(response.content)
-my_file.close()
-os.system("open placeholder.jpg")
+#print("Image content type: ", type(response.content))
+#print("Image content: ", response.content)
+#my_file = open("placeholder.jpg", "wb")
+#my_file.write(response.content)
+#my_file.close()
+#os.system("open placeholder.jpg")
