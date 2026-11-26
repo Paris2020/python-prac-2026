@@ -234,3 +234,20 @@ response = requests.get("https://picsum.photos/640/480")
 #my_file.write(response.content)
 #my_file.close()
 #os.system("open placeholder.jpg")
+
+print()
+print("============= END: Making requests ================")
+print()
+
+
+endpoint = "https://rovers.nebulum.one/api/v1/rovers/Curiosity/photos"
+#api_key = os.getenv("API_KEY_2")
+query_parameters = {"sol": 3718}
+response_ = requests.get(endpoint, params=query_parameters)
+
+
+print("Status code:", response_.status_code)
+print("Content-Type:", response_.headers.get("Content-Type"))
+print("Response body:", response_.text[:500])
+print("Number of photos: ", len(response_.json()["photos"]))
+os.system("open {0}".format(response_.json()["photos"][0]["img_src"]))
