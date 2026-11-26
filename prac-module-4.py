@@ -261,10 +261,10 @@ print()
 
 
 #Initialising a class instance
-first_student = Student()
-Student.count +=1
-second_student = Student()
-Student.count +=1
+#first_student = Student()
+#Student.count +=1
+#second_student = Student()
+#Student.count +=1
 print("Number of students: {}".format(Student.count))
 
 
@@ -274,3 +274,16 @@ print()
 
 
 #Class methods and arguments
+first_student = Student("John", "Doe")
+second_student = Student("Jane", "Doe")
+
+second_student.add_subject_and_mark("NET", 75)
+second_student.add_subject_and_mark("PRG", 90)
+
+first_student.display()
+second_student.display()
+print("Number of students: {}".format(Student.count))
+
+print()
+print("============= END: Class methods and arguments ============")
+print()
