@@ -1,13 +1,15 @@
 import os
-import io
-import shutil
-import zipfile
+#import io
+#import shutil
+#import zipfile
+from Student import *
 import schedule
 import requests
 import time
 from dotenv import load_dotenv
 from pathlib import Path
 from datetime import datetime
+
 
 #Listing files and directories
 root_path = os.path.join("/","users","username")
@@ -251,3 +253,24 @@ print("Content-Type:", response_.headers.get("Content-Type"))
 print("Response body:", response_.text[:500])
 print("Number of photos: ", len(response_.json()["photos"]))
 os.system("open {0}".format(response_.json()["photos"][0]["img_src"]))
+
+
+print()
+print("============= END: Creating our first class ================")
+print()
+
+
+#Initialising a class instance
+first_student = Student()
+Student.count +=1
+second_student = Student()
+Student.count +=1
+print("Number of students: {}".format(Student.count))
+
+
+print()
+print("============= END: Initialising a class instance ===============")
+print()
+
+
+#Class methods and arguments
